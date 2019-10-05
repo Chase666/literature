@@ -1,0 +1,7 @@
+<h1>Редактировать</h1>
+<%= form_for (@author) do |form| %>
+  <p>Имя<%= form.text_field :name %></p>
+  <p>Биография<%= form.text_field :bio %></p>
+  <p>Дата рождения<%= form.date_field :dob %></p>
+  <%= form.submit "Сохранить" %>
+<% end %>

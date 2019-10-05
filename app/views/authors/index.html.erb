@@ -1,0 +1,9 @@
+<h1>Все писатели</h1>
+<% @authors.each do |author| %>
+  <div>
+    <div>
+      <p><%= link_to author.name,author_path(author)%></p>
+      <p>Дата рождения: <%= author.dob%></p>
+    </div>
+  </div>
+<% end %>
