@@ -1,0 +1,7 @@
+<h1>Создать</h1>
+<%= form_for :review, url: new_review_path do |form| %>
+  <p>Название<%= form.text_field :title %></p>
+  <p>Содержание<%= form.text_field :body %></p>
+  <p>О ком <%= form.collection_select :author_id, Author.order(:name),:id,:name %></p>
+  <%= form.submit "Сохранить" %>
+<% end %>
