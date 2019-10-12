@@ -2,10 +2,11 @@
 <% @authors.each do |author| %>
   <div>
     <div>
+      <%= image_tag(author.image.url(:thumb)) if author.image.exists? %>
       <p><%= link_to author.name,author_path(author)%></p>
       <p>Дата рождения: <%= author.dob%></p>
     </div>
   </div>
 <% end %>
-<p><%= link_to "Новая писатель", new_author_path %></p>
+<p><%= link_to "Новый писатель", new_author_path %></p>
 <p><%= link_to "Все рецензии", reviews_path %></p>
