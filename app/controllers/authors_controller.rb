@@ -15,6 +15,7 @@ class AuthorsController < ApplicationController
 
   def show
     @author = Author.find_by(id: params[:id])
+    @author_reviews = Review.where(author_id: [@author.id]).to_a
   end
 
   def new

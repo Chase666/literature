@@ -2,5 +2,7 @@
 <h1><%= @author.name %></h1>
 <p><%= @author.bio %></p>
 <p><%= @author.dob %></p>
+<p>Случайная рецензия <%= @author_review %></p>
 <%= link_to "Изменить", edit_author_url(@author.id) %>
 <%= link_to "Удалить", author_path(@author.id), method: :delete, data: {confirm: 'Вы уверены,что хотите удалить писателя?'} %>
+<%= link_to "Случайная рецензия", review_path(@author_reviews.sample.id) %>
