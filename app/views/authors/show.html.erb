@@ -1,8 +1,14 @@
-<%= image_tag(@author.image.url(:thumb)) if @author.image.exists? %>
 <h1><%= @author.name %></h1>
-<p><%= @author.bio %></p>
+<div class="img_cntrd">
+  <%= image_tag(@author.image.url(:thumb)) if @author.image.exists? %>
+</div>
+<div class="bio">
+  <p><%= @author.bio %></p>
+</div>
 <p><%= @author.dob %></p>
-<p>Случайная рецензия <%= @author_review %></p>
-<%= link_to "Изменить", edit_author_url(@author.id) %>
-<%= link_to "Удалить", author_path(@author.id), method: :delete, data: {confirm: 'Вы уверены,что хотите удалить писателя?'} %>
-<%= link_to "Случайная рецензия", review_path(@author_reviews.sample.id) %>
+ <hr style="border-color:#5aafd6;">
+<p style="margin-top: 32px">
+  <%= link_to "Изменить", edit_author_url(@author.id) %>
+  <%= link_to "Удалить", author_path(@author.id), method: :delete, data: {confirm: 'Вы уверены,что хотите удалить писателя?'} %>
+  <%= link_to "Случайная рецензия", review_path(@author_reviews.sample.id) %>
+</p>

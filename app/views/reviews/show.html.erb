@@ -1,4 +1,6 @@
 <h1><%= @review.title %></h1>
-<p><%= @review.body %></p>
+<div class="rev">
+  <p><%= @review.body %></p>
+</div>
 <%= link_to "Изменить", edit_review_url(@review.id) %>
 <%= link_to "Удалить", review_path(@review.id), method: :delete, data: {confirm: 'Вы уверены,что хотите удалить рецензию?'} %>
