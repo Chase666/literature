@@ -29,3 +29,4 @@
 /log
 /tmp/cache
 /public/system
+/database.yml
