@@ -1,15 +1,70 @@
-
-<h1><%= @author.name %></h1>
-<div class="img_cntrd">
-  <%= image_tag(@author.image.url(:thumb)) if @author.image.exists? %>
-</div>
-<div class="bio">
-  <p><%= @author.bio %></p>
-</div>
-<p><%= @author.dob %></p>
- <hr style="border-color:#5aafd6;">
-<p style="margin-top: 32px">
-  <%= link_to "Изменить", edit_author_url(@author.id) %>
-  <%= link_to "Удалить", author_path(@author.id), method: :delete, data: {confirm: 'Вы уверены,что хотите удалить писателя?'} %>
-  <%= link_to "Случайная рецензия", review_path(@author_reviews.sample.id) %>
-</p>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="authors.scss">
+</head>
+<body>
+    <h1><%= @author.name %></h1>
+    <div class="img_cntrd">
+      <%= image_tag(@author.image.url(:thumb)) if @author.image.exists? %>
+    </div>
+    <div class="bio">
+      <p><%= @author.bio %></p>
+    </div>
+    <hr style="border-color:#5aafd6;">
+    <div id="carousel" class="carousel">
+      <button class="arrow prev">⇦</button>
+    <div class="gallery">
+      <ul class="images">
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=1"></li>
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=2"></li>
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=3"></li>
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=4"></li>
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=5"></li>
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=6"></li>
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=7"></li>
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=8"></li>
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=9"></li>
+        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=10"></li>
+      </ul>
+    </div>
+    <button class="arrow next">⇨</button>
+  </div>
+  <script>
+    /* этот код помечает картинки, для удобства разработки */
+    let i = 1;
+    for(let li of carousel.querySelectorAll('li')) {
+      li.style.position = 'relative';
+      li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${i}</span>`);
+      i++;
+    }
+    /* конфигурация */
+    let width = 130; // ширина картинки
+    let count = 1; // видимое количество изображений
+    let list = carousel.querySelector('ul');
+    let listElems = carousel.querySelectorAll('li');
+    let position = 0; // положение ленты прокрутки
+    carousel.querySelector('.prev').onclick = function() {
+      // сдвиг влево
+      position += width * count;
+      // последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
+      position = Math.min(position, 0)
+      list.style.marginLeft = position + 'px';
+    };
+    carousel.querySelector('.next').onclick = function() {
+      // сдвиг вправо
+      position -= width * count;
+      // последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
+      position = Math.max(position, -width * (listElems.length - count));
+      list.style.marginLeft = position + 'px';
+    };
+    </script>
+    <p style="margin-top: 32px">
+      <%= link_to "Изменить", edit_author_url(@author.id) %>
+      <%= link_to "Удалить", author_path(@author.id), method: :delete, data: {confirm: 'Вы уверены,что хотите удалить писателя?'} %>
+      <%= link_to "Случайная рецензия", review_path(@author_reviews.sample.id) %>
+    </p>
+  </body>
+</html>
