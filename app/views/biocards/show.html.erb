@@ -1,0 +1,8 @@
+<h1> <%=@biocard.name%> </h1>
+<div>
+  <p> Содержание: <%= @biocard.description %></p>
+  <p> Год: <%= @biocard.year %></p>
+  <p> О ком: <%= @biocard.author.name %></p>
+</div>
+<%= link_to "Изменить", edit_biocard_url(@biocard.id) %>
+<%= link_to "Удалить", biocard_path(@biocard.id), method: :delete, data: {confirm: 'Вы уверены,что хотите удалить карточку писателя?'} %>

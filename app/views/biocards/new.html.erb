@@ -1,0 +1,8 @@
+<h1>Создать</h1>
+<%= form_for :biocard, url: new_biocard_path do |form| %>
+  <p>Событие<%= form.text_field :name %></p>
+  <p>Содержание<%= form.text_field :description %></p>
+  <p>Год<%= form.text_field :year %></p>
+  <p>Писатель <%= form.collection_select :author_id, Author.order(:name),:id,:name %></p>
+  <%= form.submit "Сохранить" %>
+<% end %>

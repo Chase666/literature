@@ -1,5 +1,6 @@
 class Author < ApplicationRecord
   has_many :reviews
+  has_many :biocards
   has_attached_file :image,
                     styles: {
                       thumb: ["300x300#", :jpeg],

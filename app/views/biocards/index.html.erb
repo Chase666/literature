@@ -1,0 +1,9 @@
+<h1>Все карточки писателей</h1>
+<% @biocards.each do |b| %>
+  <div>
+    <div>
+      <p><%= link_to b.name,biocard_path(b)%></p>
+    </div>
+  </div>
+<% end %>
+<p> <%= link_to "Новая карточка писателя", new_biocard_path %> </p>

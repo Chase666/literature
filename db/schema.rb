@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_12_165341) do
+ActiveRecord::Schema.define(version: 2020_04_12_181352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 2019_10_12_165341) do
     t.datetime "image_updated_at"
   end
 
+  create_table "biocards", force: :cascade do |t|
+    t.text "description"
+    t.string "name"
+    t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_biocards_on_author_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -36,5 +46,6 @@ ActiveRecord::Schema.define(version: 2019_10_12_165341) do
     t.index ["author_id"], name: "index_reviews_on_author_id"
   end
 
+  add_foreign_key "biocards", "authors"
   add_foreign_key "reviews", "authors"
 end

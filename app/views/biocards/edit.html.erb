@@ -1,0 +1,8 @@
+<h1>Редактировать</h1>
+<%= form_for (@biocard) do |form| %>
+  <p>Событием<%= form.text_field :name %></p>
+  <p>Содержание<%= form.text_area :description %></p>
+  <p>Год<%= form.text_field :year %></p>
+  <p>О ком <%= form.collection_select :author_id, Author.order(:name),:id,:name %></p>
+  <%= form.submit "Сохранить" %>
+<% end %>
