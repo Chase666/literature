@@ -42,7 +42,7 @@ class BiocardsController < ApplicationController
 
   private
     def biocard_params
-      params.require(:biocard).permit(:description,:name,:year,:author_id)
+      params.require(:biocard).permit(:description,:name,:year,:author_id,:image)
     end
 
 end

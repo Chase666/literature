@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,16 +19,9 @@
       <button class="arrow prev">⇦</button>
     <div class="gallery">
       <ul class="images">
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=1"></li>
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=2"></li>
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=3"></li>
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=4"></li>
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=5"></li>
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=6"></li>
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=7"></li>
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=8"></li>
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=9"></li>
-        <li><img src="http://placehold.it/500/bbbbbb/fff&amp;text=10"></li>
+        <% @cards.each do |c| %>
+          <li><img title= "<%=c.description%>" src=<%=c.image.url(:thumb)%>></li>
+        <% end %>
       </ul>
     </div>
     <button class="arrow next">⇨</button>

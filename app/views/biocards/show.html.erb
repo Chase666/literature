@@ -1,4 +1,7 @@
 <h1> <%=@biocard.name%> </h1>
+<div class="img_cntrd">
+  <%= image_tag(@biocard.image.url(:thumb)) if @biocard.image.exists? %>
+</div>
 <div>
   <p> Содержание: <%= @biocard.description %></p>
   <p> Год: <%= @biocard.year %></p>
