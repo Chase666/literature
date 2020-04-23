@@ -18,6 +18,8 @@ gem 'therubyrhino'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4.1'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'aws-sdk', '~> 2.3'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -37,8 +39,7 @@ group :test do
 end
 
 group :production do
-  gem 'aws-sdk', '~> 2.3'
-  gem 'aws-sdk-s3'
+
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
