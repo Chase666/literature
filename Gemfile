@@ -18,7 +18,7 @@ gem 'therubyrhino'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4.1'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk', '~> 3'
 
 
 group :development, :test do
