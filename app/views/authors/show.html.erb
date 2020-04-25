@@ -5,9 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="authors.scss">
+    <style type="text/css">
+      a:link, a:visited {
+        background-color: #5aafd6;
+        color: white;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      a:hover, a:active {
+        background-color: #6e98db;
+      }
+    </style>
 </head>
+<div class="back_button">
+  <%= link_to "⇠ На главную",:authors%>
+</div>
 <body>
-    <h1><%= @author.name %></h1>
+    <div class="a_name"><%= @author.name %></div>
     <div class="img_cntrd">
       <%= image_tag(@author.image.url(:thumb)) if @author.image.exists? %>
     </div>
@@ -16,7 +33,7 @@
     </div>
     <hr style="border-color:#5aafd6;">
     <div id="carousel" class="carousel">
-      <button class="arrow prev">⇦</button>
+      <button class="arrow prev">⤌</button>
     <div class="gallery">
       <ul class="images">
         <% @cards.each do |c| %>
@@ -24,41 +41,37 @@
         <% end %>
       </ul>
     </div>
-    <button class="arrow next">⇨</button>
+    <button class="arrow next">⤍</button>
   </div>
   <script>
-    /* этот код помечает картинки, для удобства разработки */
-    let i = 1;
-    for(let li of carousel.querySelectorAll('li')) {
-      li.style.position = 'relative';
-      li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${i}</span>`);
-      i++;
-    }
-    /* конфигурация */
-    let width = 130; // ширина картинки
-    let count = 1; // видимое количество изображений
-    let list = carousel.querySelector('ul');
-    let listElems = carousel.querySelectorAll('li');
-    let position = 0; // положение ленты прокрутки
-    carousel.querySelector('.prev').onclick = function() {
-      // сдвиг влево
-      position += width * count;
-      // последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
-      position = Math.min(position, 0)
-      list.style.marginLeft = position + 'px';
-    };
-    carousel.querySelector('.next').onclick = function() {
-      // сдвиг вправо
-      position -= width * count;
-      // последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
-      position = Math.max(position, -width * (listElems.length - count));
-      list.style.marginLeft = position + 'px';
-    };
+    $(document).ready(function(){
+      let i = 1;
+      for(let li of carousel.querySelectorAll('li')) {
+        li.style.position = 'relative';
+        li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${i}</span>`);
+        i++;
+      }
+      let width = 130;
+      let count = 1;
+      let list = carousel.querySelector('ul');
+      let listElems = carousel.querySelectorAll('li');
+      let position = 0;
+      carousel.querySelector('.prev').onclick = function() {
+        position += width * count;
+        position = Math.min(position, 0)
+        list.style.marginLeft = position + 'px';
+      };
+      carousel.querySelector('.next').onclick = function() {
+        position -= width * count;
+        position = Math.max(position, -width * (listElems.length - count));
+        list.style.marginLeft = position + 'px';
+      };
+    });
     </script>
-    <p style="margin-top: 32px">
+    <div class="rev_button">
       <%= link_to "Изменить", edit_author_url(@author.id) %>
       <%= link_to "Удалить", author_path(@author.id), method: :delete, data: {confirm: 'Вы уверены,что хотите удалить писателя?'} %>
       <%= link_to "Случайная рецензия", review_path(@author_reviews.sample.id) %>
-    </p>
+    </div>
   </body>
 </html>

@@ -1,15 +1,16 @@
-<h1 class="zglvk">Все писатели</h1>
+<style type="text/css">
+  a:link { color: #000000; text-decoration: none}
+  a:visited { color: #000000; text-decoration: none}
+  a:hover { color: #3366CC; text-decoration: underline}
+  a:active { color: #000000; text-decoration: none}
+</style>
+<div class="zglvk">Все писатели</div>
 <% @authors.each do |author| %>
   <div class="img_cntrd">
     <div>
       <p><%= image_tag(author.image.url(:thumb)) if author.image.exists? %></p>
-      <p><%= link_to author.name,author_path(author)%></p>
-      <p>Дата рождения: <%= author.dob%></p>
+      <p class="name_links"><%= link_to author.name,author_path(author)%></p>
+      <p class="name_links"><%= author.dob%></p>
     </div>
   </div>
 <% end %>
-<p><%= link_to "Новый писатель", new_author_path %></p>
-<p><%= link_to "Новая рецензия", new_review_path %></p>
-<p><%= link_to "Новая карточка", new_biocard_path %></p>
-<p><%= link_to "Все рецензии", reviews_path %></p>
-<p><%= link_to "Все карточки", biocards_path %></p>

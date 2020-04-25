@@ -1,5 +1,22 @@
-<h1><%= @review.title %></h1>
-<div class="rev">
+<style type="text/css">
+  a:link, a:visited {
+    background-color: #5aafd6;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  a:hover, a:active {
+    background-color: #6e98db;
+  }
+</style>
+<div class="back_button">
+<%= link_to "⇠ Назад",:back%>
+</div>
+<div class='header'><%= @review.title %></div>
+<div class="rev_body">
   <p><%= @review.body %></p>
 </div>
 <%= link_to "Изменить", edit_review_url(@review.id) %>

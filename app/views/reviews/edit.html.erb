@@ -1,7 +1,7 @@
 <h1>Редактировать</h1>
 <%= form_for (@review) do |form| %>
   <p>Название<%= form.text_field :title %></p>
-  <p>Содержание<%= form.text_field :body %></p>
+  <p>Содержание<%= form.text_area :body %></p>
   <p>О ком <%= form.collection_select :author_id, Author.order(:name),:id,:name %></p>
   <%= form.submit "Сохранить" %>
 <% end %>
